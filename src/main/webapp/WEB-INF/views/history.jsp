@@ -21,7 +21,7 @@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 		<table class="table">
 			<tr>
 				<td><strong>Most Frequent Word</strong></td>
-				<td><strong>Average Paragraph Size</strong></td>
+				<td><strong>Average Paragraph Size (words)</strong></td>
 				<td><strong>Average Paragraph Processing Time (seconds)</strong></td>
 				<td><strong>Total Processing Time (seconds)</strong></td>
 			</tr>
