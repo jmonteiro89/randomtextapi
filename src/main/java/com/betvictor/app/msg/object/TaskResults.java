@@ -1,6 +1,5 @@
 package com.betvictor.app.msg.object;
 
-import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,15 +8,15 @@ public class TaskResults {
 	private Map<String, Integer> wordsStats;
 	private Integer totalParagraphs;
 	private Integer totalWords;
-	private Duration paragraphTime;
-	private Duration totalProcess;
+	private Long paragraphTime;
+	private Long totalProcess;
 	
 	public TaskResults(){
 		this.wordsStats = new HashMap<>();
 		this.totalParagraphs = 0;
 		this.totalWords = 0;
-		this.paragraphTime = Duration.ZERO;
-		this.totalProcess = Duration.ZERO;
+		this.paragraphTime = new Long(0);
+		this.totalProcess = new Long(0);
 	}
 	public Map<String, Integer> getWordsStats() {
 		return wordsStats;
@@ -37,16 +36,16 @@ public class TaskResults {
 	public void setTotalWords(Integer totalWords) {
 		this.totalWords = totalWords;
 	}
-	public Duration getParagraphTime() {
+	public Long getParagraphTime() {
 		return paragraphTime;
 	}
-	public void setParagraphTime(Duration paragraphTime) {
+	public void setParagraphTime(Long paragraphTime) {
 		this.paragraphTime = paragraphTime;
 	}
-	public Duration getTotalProcess() {
+	public Long getTotalProcess() {
 		return totalProcess;
 	}
-	public void setTotalProcess(Duration totalProcess) {
+	public void setTotalProcess(Long totalProcess) {
 		this.totalProcess = totalProcess;
 	}
 	

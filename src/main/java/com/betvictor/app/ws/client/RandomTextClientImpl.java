@@ -28,7 +28,7 @@ public class RandomTextClientImpl implements RandomTextClient {
 
 		WebTarget target = client.target(this.urlRandomText).resolveTemplate("nP", nParagraphs)
 				.resolveTemplate("minW", minWords).resolveTemplate("maxW", maxWords);
-		
+		System.out.println(target.getUri());
 		try {
 			RandomTextResponse text = target.request(MediaType.APPLICATION_JSON).get(RandomTextResponse.class);
 			if(text != null){

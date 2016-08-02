@@ -38,21 +38,23 @@
 		<property name="urlRandomText"
 			value="http://www.randomtext.me/api/giberish/p-{nP}/{minW}-{maxW}" />
 	</bean>
+	
+	<bean id="randomTextMock" class="com.betvictor.app.ws.client.RandomTextClientMock"/>
+	
 	<bean id="taskManager" class="com.betvictor.app.bsl.TaskManagerImpl">
-		<property name="randomText" ref="randomText" />
+		<property name="randomText" ref="randomTextMock" />
 		<property name="daoManager" ref="DaoManager" />
 		<property name="factory" ref="workersFactory" />
-		<property name="sharedResults" ref="taskResults" />
 	</bean>
 	<bean id="DaoManager" class="com.betvictor.app.dao.facade.DaoManagerImpl" />
 	<bean id="workersFactory" class="com.betvictor.app.bsl.workers.WorkersFactoryImpl" />
-	<bean id="taskResults" class="com.betvictor.app.msg.object.TaskResults" />
+	<bean id="taskResults" class="com.betvictor.app.msg.object.TaskResults" scope="prototype"/>
 	
 	<!-- Datasource&Persistence Configurations -->
 	<jpa:repositories base-package="com.betvictor.app.dao.repository" />
 
 	<jdbc:embedded-database id="dataSource" type="H2">
-		<jdbc:script location="classpath:create-db.sql" />
+		<jdbc:script location="classpath*:create-db.sql" />
 	</jdbc:embedded-database>
 
 	<bean id="jpaAdapter"

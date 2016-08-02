@@ -1,9 +1,6 @@
 package com.betvictor.app.bsl.workers;
 
 
-import java.time.Duration;
-import java.time.LocalTime;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.betvictor.app.msg.object.RandomTextResponse;
@@ -30,7 +27,7 @@ public class Worker implements Runnable{
 		RandomTextResponse textResponse = randomText.doGet(request.getP_start(), request.getW_count_min(), request.getW_count_max());
 		String[] paragraphs = textResponse.getText_out().replaceAll("<p>", "").split(".</p>\r");
 		for(String p : paragraphs){
-			LocalTime paragraph = LocalTime.now();
+			Long paragraph = System.currentTimeMillis();
 			//get words splited
 			String[] words = p.split(" ");
 			for(String w: words){
@@ -45,7 +42,7 @@ public class Worker implements Runnable{
 				}
 			}
 			synchronized(sharedResults){
-				sharedResults.setParagraphTime(sharedResults.getParagraphTime().plus(Duration.between(paragraph, LocalTime.now())));
+				sharedResults.setParagraphTime(sharedResults.getParagraphTime()+(System.currentTimeMillis()-paragraph));
 				sharedResults.setTotalParagraphs(sharedResults.getTotalParagraphs()+1);
 				
 			}
